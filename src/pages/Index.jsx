@@ -1,31 +1,19 @@
 import React, { useEffect, useState } from "react";
+import ProductCard from "../components/ProductCard";
+import data from "../db.json";
 
 function Index() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-        setData(result);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   console.log(data);
-  return <></>;
+  return <>
+    <div className="grid grid-cols-3">
+        {
+            data.map((item) =>
+                <ProductCard details={item}/>
+            )
+
+        }
+    </div>
+  </>;
 }
 
 export default Index;
