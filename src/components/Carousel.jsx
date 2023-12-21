@@ -10,13 +10,13 @@ function Carousel() {
         <>
             <div className="w-full carousel rounded-box">
                 <div className="carousel-item w-full">
-                    <img src={img2} id="item1" className="w-full" alt="Tailwind CSS Carousel component" />
+                    <img src={new URL(`${img2}`, import.meta.url).href} id="item1" className="w-full" alt="Tailwind CSS Carousel component" />
                 </div>
                 <div className="carousel-item w-full">
-                    <img src={img3} id="item2" className="w-full" alt="Tailwind CSS Carousel component" />
+                    <img src={new URL(`${img2}`, import.meta.url).href} id="item2" className="w-full" alt="Tailwind CSS Carousel component" />
                 </div>
                 <div className="carousel-item w-full">
-                    <img src={img1} id="item3" className="w-full" alt="Tailwind CSS Carousel component" />
+                    <img src={new URL(`${img2}`, import.meta.url).href} id="item3" className="w-full" alt="Tailwind CSS Carousel component" />
                 </div>
             </div>
         </>
