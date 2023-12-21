@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 function Navbar() {
     return (
         <>
@@ -9,7 +11,9 @@ function Navbar() {
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li>
-                                <a>All</a>
+                                <NavLink to="/" className={({ isActive }) => isActive ? "bg-black text-w" : ""}>
+                                    All
+                                </NavLink>
                             </li>
                             <li>
                                 <a>Men's clothing</a>
@@ -29,21 +33,32 @@ function Navbar() {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li>
-                            <a>All</a>
+                        <li className="mx-2">
+                            <NavLink to="/" className={({ isActive }) => isActive ? "bg-neutral-content" : ""}>
+                                Home
+                            </NavLink>
                         </li>
-                        <li>
-                            <a>Men's clothing</a>
+                        <li className="mx-2">
+                            <NavLink to="/men" className={({ isActive }) => isActive ? "bg-neutral-content" : ""}>
+                            Men's clothing
+                            </NavLink>
                         </li>
-                        <li>
-                            <a>Women's clothing</a>
+                        <li className="mx-2">
+                            <NavLink to="/women" className={({ isActive }) => isActive ? "bg-neutral-content" : ""}>
+                            Women's clothing
+                            </NavLink>
                         </li>
-                        <li>
-                            <a>Jewellery</a>
+                        <li className="mx-2">
+                            <NavLink to="/jewellery" className={({ isActive }) => isActive ? "bg-neutral-content" : ""}>
+                            Jewellery
+                            </NavLink>
                         </li>
-                        <li>
-                            <a>Electronics</a>
+                        <li className="mx-2">
+                            <NavLink to="/electronics" className={({ isActive }) => isActive ? "bg-neutral-content" : ""}>
+                            Electronics
+                            </NavLink>
                         </li>
+                        
                     </ul>
                 </div>
                 <div className="navbar-end">
