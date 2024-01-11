@@ -13,7 +13,7 @@ function Register() {
   return (
     <>
         <div className="w-full h-[90dvh] flex items-center justify-center ">
-                <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-y-4 rounded-md shadow-lg border w-2/5 h-[24rem]">
+                <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-y-4 rounded-md shadow-lg border w-[90%] md:w-2/5 h-[24rem]">
                 <h1 className="text-3xl font-medium my-2">Register</h1>
                     <input
                         type="text"

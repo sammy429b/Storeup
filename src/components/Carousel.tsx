@@ -4,8 +4,6 @@ import img2 from '../Data/banner_mens.png'
 import img3 from '../Data/banner_women.png'
 function Carousel() {
 
-      
-      
     return (
         <>
             <div className="w-full carousel rounded-box">
