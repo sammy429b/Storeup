@@ -1,34 +1,56 @@
 import React, { FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Loader from "../components/Loader";
+import Apiconfig from "../utils/ApiConfig";
+import {AuthContext} from  "../context/AuthContext";
 
-const Login:React.FC = () => {
+const Login: React.FC = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
-
+  const [loading, setLoading] = React.useState(false);
+  const navigate = useNavigate();
+  const {user, setUser} = React.useContext(AuthContext);
   const handleShowPassword = () => setShowPassword(!showPassword);
 
-  const handleLogin = (e:FormEvent) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-
+    console.log(user)
+    setLoading(true);
     const data = {
       email,
       password,
     };
-
-    fetch("http://localhost:3000/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    setEmail("");
-    setPassword("");
-
-    console.log(data);
+  
+    try {
+      const response = await fetch(Apiconfig.login, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        sessionStorage.setItem("token", data.token);
+        setUser(true);
+        navigate("/"); // Redirect immediately after setting the token
+        console.log(data);
+        setEmail("");
+        setPassword("");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+      console.log(user)
+    }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -67,11 +89,7 @@ const Login:React.FC = () => {
           </div>
 
           <div className="w-[90%] flex justify-center items-center input input-bordered bg-accent-content text-white">
-            <input
-              type="submit"
-              value="Login"
-              className=" w-full  max-w-md"
-            />
+            <input type="submit" value="Login" className=" w-full  max-w-md" />
           </div>
           <Link
             to="/register"
@@ -86,6 +104,6 @@ const Login:React.FC = () => {
       </div>
     </>
   );
-}
+};
 
 export default Login;

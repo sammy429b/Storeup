@@ -1,4 +1,5 @@
 import React, { FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const Register: React.FC = () => {
@@ -8,39 +9,41 @@ const Register: React.FC = () => {
   const [confirmpassword, setConfirmPassword] = React.useState("");
   const [error, setError] = React.useState("");
 
+  const navigate = useNavigate();
+
   const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
     const formData = {
-        username: username,
-        email: email,
-        password:password
+      username: username,
+      email: email,
+      password: password
     }
     if (password !== confirmpassword) {
-        toast('Password do not match ', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
+      toast('Password do not match ', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       return;
     }
     if (email === "" || password === "") {
-        toast('🦄 Wow so easy!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress : undefined,
-            theme: "light",
-            });
-        return;
-      }
+      toast('🦄 Wow so easy!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
 
 
     try {
@@ -51,17 +54,19 @@ const Register: React.FC = () => {
         },
         body: JSON.stringify(formData),
       });
-      
+
       if (response.ok) {
-          alert("Registration successful!");
-          // Redirect or handle success as needed
-        } else {
-            alert("Registration failed. Please try again.");
-        }
-    } catch (error) {
-      setError(error);
+        alert("Registration successful!");
+        navigate("/");
+        // Redirect or handle success as needed
+      } else {
+        
+      }
+    } catch (err) {
+      console.log(err)
     }
-    };
+
+  };
 
   return (
     <>
@@ -109,7 +114,7 @@ const Register: React.FC = () => {
             login Instead?
           </a>
         </form>
-      <ToastContainer/>
+        <ToastContainer />
       </div>
       {/* {email} <br />
       {username} <br />
