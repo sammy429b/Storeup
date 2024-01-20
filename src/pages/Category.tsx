@@ -1,4 +1,3 @@
-import React from 'react';
 import data from '../db.json';
 import ProductCard from '../components/ProductCard';
 import { useParams } from 'react-router-dom';

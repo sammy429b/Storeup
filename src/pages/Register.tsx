@@ -16,10 +16,10 @@ const Register: React.FC = () => {
     const formData = {
       username: username,
       email: email,
-      password: password
-    }
+      password: password,
+    };
     if (password !== confirmpassword) {
-      toast('Password do not match ', {
+      toast("Password do not match ", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -32,7 +32,7 @@ const Register: React.FC = () => {
       return;
     }
     if (email === "" || password === "") {
-      toast('🦄 Wow so easy!', {
+      toast("Enter details", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -44,7 +44,6 @@ const Register: React.FC = () => {
       });
       return;
     }
-
 
     try {
       const response = await fetch("http://localhost:3000/api/auth/register", {
@@ -59,13 +58,10 @@ const Register: React.FC = () => {
         alert("Registration successful!");
         navigate("/");
         // Redirect or handle success as needed
-      } else {
-        
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-
   };
 
   return (
@@ -82,7 +78,6 @@ const Register: React.FC = () => {
             placeholder="Username"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
-
           />
           <input
             type="text"

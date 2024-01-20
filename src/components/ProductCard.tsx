@@ -1,6 +1,9 @@
-import React from "react";
 import EmptyStar from "../assets/star.png";
 import FilledStar from "../assets/starfill.png";
+import PropTypes from "prop-types";
+
+
+
 function ProductCard({ details }) {
   const ratecount = details.rating.rate;
   const rate = [...Array(parseInt(ratecount)).keys()];
@@ -73,5 +76,17 @@ function ProductCard({ details }) {
     </>
   );
 }
+
+ProductCard.propTypes = {
+  details: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.shape({
+      rate: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default ProductCard;

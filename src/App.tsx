@@ -3,7 +3,7 @@ import App_Layout from './layout/app'
 import Page_Not_Found from './pages/404';
 import Category from './pages/Category';
 import Index from './pages/Index'
-import {  createBrowserRouter,RouterProvider, redirect, useParams} from "react-router-dom";
+import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import Login from './pages/Login';
 import Register from './pages/Register';
 

@@ -2,7 +2,7 @@ import React, { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import Apiconfig from "../utils/ApiConfig";
-import {AuthContext} from  "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
 const Login: React.FC = () => {
   const [email, setEmail] = React.useState("");
@@ -10,18 +10,17 @@ const Login: React.FC = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
-  const {user, setUser} = React.useContext(AuthContext);
+  const { user, setUser } = React.useContext(AuthContext) || {};
   const handleShowPassword = () => setShowPassword(!showPassword);
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(user)
     setLoading(true);
     const data = {
       email,
       password,
     };
-  
+
     try {
       const response = await fetch(Apiconfig.login, {
         method: "POST",
@@ -30,7 +29,7 @@ const Login: React.FC = () => {
         },
         body: JSON.stringify(data),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         sessionStorage.setItem("token", data.token);
@@ -39,12 +38,12 @@ const Login: React.FC = () => {
         console.log(data);
         setEmail("");
         setPassword("");
+        console.log(user);
       }
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
-      console.log(user)
     }
   };
 
