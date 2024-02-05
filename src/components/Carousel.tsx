@@ -9,7 +9,7 @@ function Carousel() {
     <>
       <div className="w-full carousel rounded-box">
         {images.map((image, index) => (
-          <div className="carousel-item w-full">
+          <div className="carousel-item w-full" key={index}>
             <img
               src={new URL(`${image}`, import.meta.url).href}
               id="item1"

@@ -2,15 +2,15 @@ import React, { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import Apiconfig from "../utils/ApiConfig";
-import { AuthContext } from "../context/AuthContext";
-
+import authStore from "../app/AuthStore";
 const Login: React.FC = () => {
+  
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const{user} = authStore();
   const navigate = useNavigate();
-  const { user, setUser } = React.useContext(AuthContext) || {};
   const handleShowPassword = () => setShowPassword(!showPassword);
 
   const handleLogin = async (e: FormEvent) => {
@@ -33,15 +33,22 @@ const Login: React.FC = () => {
       if (response.ok) {
         const data = await response.json();
         sessionStorage.setItem("token", data.token);
-        setUser(true);
+        sessionStorage.setItem("user", true);
+        authStore.getState().login();
         navigate("/"); // Redirect immediately after setting the token
         console.log(data);
         setEmail("");
         setPassword("");
         console.log(user);
+      }else {
+        console.error("Server response not OK:", response.status, response.statusText);
+        const errorData = await response.json();
+        console.error("Error details:", errorData);
       }
+
+
     } catch (error) {
-      console.log(error);
+      console.error("An error message",error);
     } finally {
       setLoading(false);
     }

@@ -1,13 +1,14 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import {AuthContext} from "../context/AuthContext"
 import { useContext } from "react";
+import authStore from "../app/AuthStore";
+
 
 function Navbar() {
-    const {user , setUser} = useContext(AuthContext) ;
     const navigate = useNavigate();
+    const {user} = authStore();
     const handleLogout = () => {
-        setUser(false);
         navigate("/login");
+        authStore.getState().logout();
         sessionStorage.removeItem("token");
 
     }
