@@ -1,18 +1,18 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import authStore from "../app/AuthStore";
+import useAuthStore from "../app/AuthStore";
 
 
 function Navbar() {
     const navigate = useNavigate();
-    const {user} = authStore();
+    const isUser = useAuthStore(state => state.user);
+    const Logout = useAuthStore(state => state.logout);
     const handleLogout = () => {
         navigate("/login");
-        authStore.getState().logout();
+        Logout();
         sessionStorage.removeItem("token");
 
     }
-    console.log(user)
+    console.log(isUser)
 
     return (
         <>
@@ -105,7 +105,7 @@ function Navbar() {
                                             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                                         />
                                     </svg>
-                                    <span className="badge badge-sm indicator-item">{user ? 8 : 0}</span>
+                                    <span className="badge badge-sm indicator-item">{isUser ? 8 : 0}</span>
                                 </div>
                             </div>
 
@@ -113,7 +113,7 @@ function Navbar() {
                                 tabIndex={0}
                                 className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
                             >
-                                {user ? (<div className="card-body">
+                                {isUser ? (<div className="card-body">
                                     <span className="font-bold text-lg">8 Items</span>
                                     <span className="text-info">Subtotal: $999</span>
                                     <div className="card-actions">
@@ -134,7 +134,7 @@ function Navbar() {
                                         </div>)}
                             </div>
                         </div>
-                        {user ? (<div className="dropdown dropdown-end">
+                        {isUser ? (<div className="dropdown dropdown-end">
                             <div
                                 tabIndex={0}
                                 role="button"

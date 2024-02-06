@@ -1,12 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
-import { AuthProvider } from './context/AuthContext'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
 
-const rootElement = document.getElementById('root');
-ReactDOM.createRoot(rootElement || document.createElement('div')).render(
-  <AuthProvider>
-    <App />
-  </AuthProvider>
-)
+const rootElement = document.getElementById("root");
+ReactDOM.createRoot(rootElement || document.createElement("div")).render(
+  <App />
+);

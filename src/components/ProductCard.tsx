@@ -1,12 +1,21 @@
 import EmptyStar from "../assets/star.png";
 import FilledStar from "../assets/starfill.png";
 import PropTypes from "prop-types";
-
+import cartStore from "../app/CartStore";
 
 
 function ProductCard({ details }) {
+
+  const {cart} = cartStore();
+
   const ratecount = details.rating.rate;
   const rate = [...Array(parseInt(ratecount)).keys()];
+
+  const handleAddToCart = () => {
+    cartStore.getState().addToCart(details);
+  }
+  // console.log(cart)
+
   return (
     <>
       <div
@@ -51,8 +60,8 @@ function ProductCard({ details }) {
               </span>
             </div>
           </div>
-          <a
-            href="#"
+          <p
+            onClick={handleAddToCart}
             className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
           >
             <svg
@@ -70,23 +79,23 @@ function ProductCard({ details }) {
               />
             </svg>
             Add to cart
-          </a>
+          </p>
         </div>
       </div>
     </>
   );
 }
 
-ProductCard.propTypes = {
-  details: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.shape({
-      rate: PropTypes.number.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
+// ProductCard.propTypes = {
+//   details: PropTypes.shape({
+//     id: PropTypes.number.isRequired,
+//     image: PropTypes.string.isRequired,
+//     title: PropTypes.string.isRequired,
+//     price: PropTypes.number.isRequired,
+//     rating: PropTypes.shape({
+//       rate: PropTypes.number.isRequired,
+//     }).isRequired,
+//   }).isRequired,
+// };
 
 export default ProductCard;

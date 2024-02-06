@@ -1,6 +1,6 @@
 // AuthStore.tsx
 
-import { create } from 'zustand';
+import { create } from "zustand";
 
 type Auth = {
   user: boolean;
@@ -8,16 +8,16 @@ type Auth = {
   logout: () => void;
 };
 
-const authStore = create<Auth>((set) => ({
-  user: localStorage.getItem('token') !== null, 
+const useAuthStore = create<Auth>((set) => ({
+  user: localStorage.getItem("token") !== null,
   login: () => {
-    localStorage.setItem('token', 'your_token_here'); 
+    localStorage.setItem("token", "your_token_here");
     set({ user: true });
   },
   logout: () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     set({ user: false });
   },
 }));
 
-export default authStore;
+export default useAuthStore;

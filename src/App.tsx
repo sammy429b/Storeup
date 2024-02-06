@@ -6,6 +6,7 @@ import Index from './pages/Index'
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Cart from './pages/Cart';
 
 const Routerapp = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const Routerapp = createBrowserRouter([
         {
           path: "/login",
           element: <Login/>,
+        },
+        {
+          path: "/cart",
+          element: <Cart/>,
         }
       ],
     },
