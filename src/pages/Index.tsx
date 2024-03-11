@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../components/Main/ProductCard";
 import data from "../db.json";
-import Carousel from "../components/Carousel";
+import Carousel from "../components/Main/Carousel";
 import authStore from "../app/AuthStore";
 function Index() {
   console.log(data);

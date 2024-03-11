@@ -18,7 +18,7 @@ type CartStore = {
 
 const cartStore = create<CartStore>((set) => ({
     cart: [],
-    cartCount: () => set.getState().cart.length,
+    cartCount: () => cartStore.getState().cart,
     addToCart: (product) => set((state) => ({ cart: [...state.cart, product] })),
     removeFromCart: (product) => set((state) => ({ cart: state.cart.filter((p) => p.id !== product.id) })),
     clearCart: () => set({ cart: [] }),

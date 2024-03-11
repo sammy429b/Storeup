@@ -1,5 +1,5 @@
 import data from '../db.json';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../components/Main/ProductCard';
 import { useParams } from 'react-router-dom';
 
 function Category() {

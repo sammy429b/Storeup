@@ -1,12 +1,14 @@
-import EmptyStar from "../assets/star.png";
-import FilledStar from "../assets/starfill.png";
+import EmptyStar from "../../assets/star.png";
+import FilledStar from "../../assets/starfill.png";
 import PropTypes from "prop-types";
-import cartStore from "../app/CartStore";
+import cartStore from "../../app/CartStore";
 
 
 function ProductCard({ details }) {
 
-  const {cart} = cartStore();
+  const cart = cartStore(state => state.cart);
+  // const cartCount = cartStore(state => state.cartCount());
+  // console.log(cartCount)
 
   const ratecount = details.rating.rate;
   const rate = [...Array(parseInt(ratecount)).keys()];
@@ -14,7 +16,7 @@ function ProductCard({ details }) {
   const handleAddToCart = () => {
     cartStore.getState().addToCart(details);
   }
-  // console.log(cart)
+  console.log(cart)
 
   return (
     <>
@@ -86,16 +88,5 @@ function ProductCard({ details }) {
   );
 }
 
-// ProductCard.propTypes = {
-//   details: PropTypes.shape({
-//     id: PropTypes.number.isRequired,
-//     image: PropTypes.string.isRequired,
-//     title: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//     rating: PropTypes.shape({
-//       rate: PropTypes.number.isRequired,
-//     }).isRequired,
-//   }).isRequired,
-// };
 
 export default ProductCard;

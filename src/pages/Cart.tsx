@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductCard from '../components/ProductCard'
+import ProductCard from '../components/Main/ProductCard'
 import Productcart from '../components/Cart/Productcart'
 import cartStore from '../app/CartStore'
 

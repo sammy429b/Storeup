@@ -1,8 +1,9 @@
 
+
 const images = [
-  new URL("../Data/banner_mens.png", import.meta.url).href,
-  new URL("../Data/banner_women.png", import.meta.url).href,
-  new URL("../Data/banner_kids.png", import.meta.url).href,
+  new URL("../../Data/banner_mens.png", import.meta.url).href,
+  new URL("../../Data/banner_women.png", import.meta.url).href,
+  new URL("../../Data/banner_kids.png", import.meta.url).href,
 ];
 function Carousel() {
   return (

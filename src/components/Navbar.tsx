@@ -118,7 +118,9 @@ function Navbar() {
                                     <span className="text-info">Subtotal: $999</span>
                                     <div className="card-actions">
                                         <button className="btn btn-primary btn-block">
+                                        <Link to="/cart">
                                             View cart
+                                        </Link>
                                         </button>
                                     </div>
                                 </div>)
